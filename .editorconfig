@@ -1,0 +1,10 @@
+root = true
+
+# All files
+[*]
+indent_size = 3
+indent_style = space
+
+# Xml files
+[*.xml]
+indent_size = 2
