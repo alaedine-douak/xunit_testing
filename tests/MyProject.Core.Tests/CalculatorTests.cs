@@ -54,4 +54,17 @@ public class CalculatorTests
 
       Assert.Throws<DevideByZeroException>(result);
    }
+
+   [Fact]
+   public void CalculateAverage_WithValidArray_ReturnsCorrectAverage()
+   {
+      // Arrange
+      double[] values = [2.0, 4.0, 6.0];
+
+      // Act
+      double result = _calculator.CalculateAverage(values);
+
+      // Assert - NOTE: using precision for floating-point comparison
+      Assert.Equal(4.0, result, precision: 2);
+   }
 }
