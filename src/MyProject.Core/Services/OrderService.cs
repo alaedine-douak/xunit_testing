@@ -1,19 +1,34 @@
 ﻿namespace MyProject.Core.Services;
 
-public class OrderService
+internal class OrderService
 {
-   public Order Create(Customer customer, decimal amount)
+   private static int _nextProcessingId = 100;
+
+   internal Order ProcessOrder(Order order)
    {
-      if (customer is null) 
-      {
-         throw new ArgumentNullException("Customer required!");
+      if (order is not { Status: OrderStatus.Pending }) 
+      { 
+         throw new ArgumentNullException(nameof(order), "Order is required and must be pending");
       }
 
-      // Adding to Database
+      order.Status = OrderStatus.Processing;
+      order.ProcessedAt = DateTime.UtcNow;
+      order.ProcessingId = $"proc-{DateTime.UtcNow:yyyyMMdd}-{_nextProcessingId:D4}";
 
-      return new Order(
-         /* Getting the OrderId from DB */1233,
-         customer.Id,
-         10); 
+      _nextProcessingId++;
+
+      return order;
    }
+
+   internal decimal CalculateOrderTotal(Order order)
+   {
+      if (order is { Items: [] }) return 0;
+
+      return order.Items.Sum(i => i.TotalPrice);
+   }
+
+   internal bool IsOrderValid(Order order) =>
+      order is not null &&
+      order is { CutomerId: > 0, Amount: > 0, Items: not [] } &&
+      order.Items.All(item => item is { Quantity: > 0, Price: > 0m });
 }
