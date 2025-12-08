@@ -13,7 +13,7 @@ public class OrderServiceTests
    }
 
    [Fact]
-   public void ProcessOrder_ShouldThrowArgumentNullException_WhenOrderIsNull()
+   public void ProcessOrder_WhenOrderIsNull_ShouldThrowArgumentNullException()
    {
       // Arrange
 
@@ -28,7 +28,7 @@ public class OrderServiceTests
    }
 
    [Fact]
-   public void ProcessOrder_ShouldThrowArgumentNullException_WhenOrderStatusNotPending()
+   public void ProcessOrder_WhenOrderStatusNotPending_ShouldThrowArgumentNullException()
    {
       // Arrange
       var order = new Order 
@@ -44,7 +44,7 @@ public class OrderServiceTests
    }
 
    [Fact]
-   public void ProcessOrder_ShouldMarkOrderAsProcessed_WhenOrderIsValid()
+   public void ProcessOrder_WhenOrderIsValid_ShouldMarkOrderAsProcessed()
    {
       // Arrange
       var order = new Order
@@ -65,7 +65,7 @@ public class OrderServiceTests
    }
 
    [Fact]
-   public void IsOrderValid_ShouldReturnTrue_WhenOrderIsValid()
+   public void IsOrderValid_WhenOrderIsValid_ShouldReturnTrue()
    {
       var order = new Order
       {
@@ -86,7 +86,7 @@ public class OrderServiceTests
    }
 
    [Fact]
-   public void ProcessOrder_ShouldReturnValidOrderWithFluentAssertion_WhenOrderIsValid()
+   public void ProcessOrder_WhenOrderIsValid_ShouldReturnValidOrderWithFluentAssertion()
    {
       // Arrange
       var order = new Order

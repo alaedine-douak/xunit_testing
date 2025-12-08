@@ -14,7 +14,7 @@ public class EmailValidatorTests
    [InlineData("user@example.com", true)]
    [InlineData("user.domain@example.com", true)]
    [InlineData("user-domain@example.or.dz", true)]
-   public void IsValid_ShouldReturnsTrue_WhenEmailIsValid(string email, bool expectedResult)
+   public void IsValid_WhenEmailIsValid_ShouldReturnsTrue(string email, bool expectedResult)
    {
       // Arrange & Act
       var result = _emailValidator.IsValid(email);
@@ -27,7 +27,7 @@ public class EmailValidatorTests
    [InlineData("", false)]
    [InlineData(null, false)]
    [InlineData("userexample.com", false)]
-   public void IsValid_ShouldReturnsFalse_WhenEmailIsInvalid(string email, bool expectedResult)
+   public void IsValid_WhenEmailIsInvalid_ShouldReturnsFalse(string email, bool expectedResult)
    {
       var result = _emailValidator.IsValid(email);
 

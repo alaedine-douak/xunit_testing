@@ -4,7 +4,7 @@ public class UserValidatorTests
 {
    [Theory]
    [MemberData(nameof(GetValidUserScenarios))]
-   public void Validate_ShouldReturnsTrue_WhenUsersValid(User user, string scenario)
+   internal void Validate_WhenUsersValid_ShouldReturnsTrue(User user, string scenario)
    {
       // Arrange
       var validator = new UserValidator();
